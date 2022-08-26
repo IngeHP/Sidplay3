@@ -1,0 +1,235 @@
+/* src/config.h.in.  Generated from configure.ac by autoheader.  */
+
+/* Define if building universal (internal helper macro) */
+#undef AC_APPLE_UNIVERSAL_BUILD
+
+/* Define for threaded driver */
+#undef EXSID_THREADED
+
+/* Algorithm AES in gcrypt library */
+#undef GCRYPT_WITH_AES
+
+/* Algorithm ARCFOUR in gcrypt library */
+#undef GCRYPT_WITH_ARCFOUR
+
+/* Algorithm BLOWFISH in gcrypt library */
+#undef GCRYPT_WITH_BLOWFISH
+
+/* Algorithm CAST5 in gcrypt library */
+#undef GCRYPT_WITH_CAST5
+
+/* Algorithm CRC in gcrypt library */
+#undef GCRYPT_WITH_CRC
+
+/* Algorithm DES in gcrypt library */
+#undef GCRYPT_WITH_DES
+
+/* Algorithm DSA in gcrypt library */
+#undef GCRYPT_WITH_DSA
+
+/* Algorithm ELGAMAL in gcrypt library */
+#undef GCRYPT_WITH_ELGAMAL
+
+/* Algorithm HAVAL in gcrypt library */
+#undef GCRYPT_WITH_HAVAL
+
+/* Algorithm IDEA in gcrypt library */
+#undef GCRYPT_WITH_IDEA
+
+/* Algorithm MD2 in gcrypt library */
+#undef GCRYPT_WITH_MD2
+
+/* Algorithm MD4 in gcrypt library */
+#undef GCRYPT_WITH_MD4
+
+/* Algorithm MD5 in gcrypt library */
+#undef GCRYPT_WITH_MD5
+
+/* Algorithm RFC2268 in gcrypt library */
+#undef GCRYPT_WITH_RFC2268
+
+/* Algorithm RMD160 in gcrypt library */
+#undef GCRYPT_WITH_RMD160
+
+/* Algorithm RSA in gcrypt library */
+#undef GCRYPT_WITH_RSA
+
+/* Algorithm SERPENT in gcrypt library */
+#undef GCRYPT_WITH_SERPENT
+
+/* Algorithm SHA0 in gcrypt library */
+#undef GCRYPT_WITH_SHA0
+
+/* Algorithm SHA1 in gcrypt library */
+#undef GCRYPT_WITH_SHA1
+
+/* Algorithm SHA224 in gcrypt library */
+#undef GCRYPT_WITH_SHA224
+
+/* Algorithm SHA256 in gcrypt library */
+#undef GCRYPT_WITH_SHA256
+
+/* Algorithm SHA384 in gcrypt library */
+#undef GCRYPT_WITH_SHA384
+
+/* Algorithm SHA512 in gcrypt library */
+#undef GCRYPT_WITH_SHA512
+
+/* Algorithm TIGER in gcrypt library */
+#undef GCRYPT_WITH_TIGER
+
+/* Algorithm TWOFISH in gcrypt library */
+#undef GCRYPT_WITH_TWOFISH
+
+/* Algorithm WHIRLPOOL in gcrypt library */
+#undef GCRYPT_WITH_WHIRLPOOL
+
+/* define if the compiler supports basic C++11 syntax */
+#define HAVE_CXX11 1
+
+/* define if the compiler supports basic C++14 syntax */
+#define HAVE_CXX14 1
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Define to 1 if you have libexsid (-lexsid). */
+#undef HAVE_EXSID
+
+/* Define to 1 if you have ftd2xx.h */
+#undef HAVE_FTD2XX
+
+/* Define to 1 if you have the <ftd2xx.h> header file. */
+#undef HAVE_FTD2XX_H
+
+/* Define to 1 if you have ftdi.h */
+#undef HAVE_FTDI
+
+/* Gcrypt library is available */
+#undef HAVE_GCRYPT
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#define HAVE_INTTYPES_H 1
+
+/* Define to 1 if you have the <memory.h> header file. */
+#define HAVE_MEMORY_H 1
+
+/* Define to 1 if you have the <mmintrin.h> header file. */
+#define HAVE_EMMINTRIN_H 1
+
+/* Define to 1 if you have pthread.h */
+#undef HAVE_PTHREAD_H
+
+/* Have PTHREAD_PRIO_INHERIT. */
+#undef HAVE_PTHREAD_PRIO_INHERIT
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#define HAVE_STDINT_H 1
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#define HAVE_STDLIB_H 1
+
+/* Define to 1 if you have the `strcasecmp' function. */
+#undef HAVE_STRCASECMP
+
+/* Define to 1 if you have the `stricmp' function. */
+#define HAVE_STRICMP 1
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#define HAVE_STRING_H 1
+
+/* Define to 1 if you have the `strncasecmp' function. */
+#undef HAVE_STRNCASECMP
+
+/* Define to 1 if you have the `strnicmp' function. */
+#undef HAVE_STRNICMP
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#define HAVE_SYS_STAT_H 1
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#define HAVE_SYS_TYPES_H 1
+
+/* Define to 1 if you have the <threads.h> header file. */
+#undef HAVE_THREADS_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the <UnitTest++/UnitTest++.h> header file. */
+#undef HAVE_UNITTEST___UNITTEST___H
+
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
+#undef LT_OBJDIR
+
+/* Name of package */
+#define PACKAGE "libsidplayfp"
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#define PACKAGE_NAME "libsidplayfp"
+
+/* Define to the full name and version of this package. */
+#define PACKAGE_STRING "libsidplayfp 2.4.0a"
+
+/* Define to the one symbol short name of this package. */
+#define PACKAGE_TARNAME "libsidplayfp"
+
+/* Define to the home page for this package. */
+#define PACKAGE_URL "https://github.com/libsidplayfp/libsidplayfp/"
+
+/* Define to the version of this package. */
+#define PACKAGE_VERSION "2.4.0a"
+
+/* Path to Lorenz' testsuite. */
+#undef PC64_TESTSUITE
+
+/* Define to necessary symbol if this constant uses a non-standard name on
+   your system. */
+#undef PTHREAD_CREATE_JOINABLE
+
+/* Shared library extension */
+#undef SHLIBEXT
+
+/* The size of `int', as computed by sizeof. */
+#define SIZEOF_INT 4
+
+/* The size of `short', as computed by sizeof. */
+#undef SIZEOF_SHORT
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Version number of package */
+#define VERSION "2.4.0a"
+
+/* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
+   significant byte first (like Motorola and SPARC, unlike Intel). */
+#if defined AC_APPLE_UNIVERSAL_BUILD
+# if defined __BIG_ENDIAN__
+#  define WORDS_BIGENDIAN 1
+# endif
+#else
+# ifndef WORDS_BIGENDIAN
+#  undef WORDS_BIGENDIAN
+# endif
+#endif
+
+/* Define to the equivalent of the C99 'restrict' keyword, or to
+   nothing if this is not supported.  Do not define if restrict is
+   supported directly.  */
+#undef restrict
+/* Work around a bug in Sun C++: it does not support _Restrict or
+   __restrict__, even though the corresponding Sun C compiler ends up with
+   "#define restrict _Restrict" or "#define restrict __restrict__" in the
+   previous line.  Perhaps some future version of Sun C++ will work with
+   restrict; if so, hopefully it defines __RESTRICT like Sun C does.  */
+#if defined __SUNPRO_CC && !defined __RESTRICT
+# define _Restrict
+# define __restrict__
+#endif

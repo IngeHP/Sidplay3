@@ -1,0 +1,12 @@
+Sidplay3
+2022-03-29
+- Fixed a bug where the program would crash if you opened and closed the filter settings
+  before starting any tune.
+  
+2022-03-31
+- Fixed fadeout code. Fadeout in playlist now works.
+- Disabled "Export file" as it's not working as intended.
+
+2022-04-01
+- Newest libsidplayfp added
+

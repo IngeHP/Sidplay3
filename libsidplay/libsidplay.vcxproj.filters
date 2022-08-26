@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{ebf955ca-6275-4146-b21c-22ddf9279225}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\C64">
+      <UniqueIdentifier>{c4ba03d8-56ad-4d20-b0a5-2b7fa7ea105f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\C64\Banks">
+      <UniqueIdentifier>{449caf18-b17a-4d93-b09d-913c4cd6070b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\C64\CIA">
+      <UniqueIdentifier>{5e6e540f-a2be-419d-a62c-f21badbace70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\C64\CPU">
+      <UniqueIdentifier>{c58049d7-bbb7-44a3-9b8b-d07b5a69c0a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\C64\VIC_II">
+      <UniqueIdentifier>{1a23b235-54b7-4fe6-9adf-512733c377cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\SidTune">
+      <UniqueIdentifier>{902a82f8-b403-4a2b-8db3-458f4ebf4a2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils">
+      <UniqueIdentifier>{aa444377-68c4-45fc-b649-de4179cad1b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils\MD5">
+      <UniqueIdentifier>{a424080e-cd03-4673-b20e-87169c185ca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Builders">
+      <UniqueIdentifier>{d149f43d-d1fb-454d-853e-698aea44fe28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Builders\residfp-builder">
+      <UniqueIdentifier>{fe8388b8-59b2-4d43-9c99-e28adfcf874f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Builders\residfp-builder\residfp">
+      <UniqueIdentifier>{f4b839b7-0526-4de0-88a0-833fd66f7715}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Builders\residfp-builder\residfp\resample">
+      <UniqueIdentifier>{394f3ea0-6cb5-459b-a6f8-fefab5f34796}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Sidplayfp">
+      <UniqueIdentifier>{d5026d64-dd52-4f16-8938-468c086ccf5d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\sidplayfp\sidbuilder.cpp">
+      <Filter>src\Sidplayfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidplayfp\SidConfig.cpp">
+      <Filter>src\Sidplayfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidplayfp\SidInfo.cpp">
+      <Filter>src\Sidplayfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidplayfp\sidplayfp.cpp">
+      <Filter>src\Sidplayfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidplayfp\SidTune.cpp">
+      <Filter>src\Sidplayfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidplayfp\SidTuneInfo.cpp">
+      <Filter>src\Sidplayfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventScheduler.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mixer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\player.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\psiddrv.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\reloc65.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidemu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c64\CIA\SerialPort.cpp">
+      <Filter>src\C64\CIA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c64\CIA\timer.cpp">
+      <Filter>src\C64\CIA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c64\CIA\tod.cpp">
+      <Filter>src\C64\CIA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c64\CPU\mos6510.cpp">
+      <Filter>src\C64\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c64\CPU\mos6510debug.cpp">
+      <Filter>src\C64\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c64\VIC_II\mos656x.cpp">
+      <Filter>src\C64\VIC_II</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c64\c64.cpp">
+      <Filter>src\C64</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c64\mmu.cpp">
+      <Filter>src\C64</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidtune\MUS.cpp">
+      <Filter>src\SidTune</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidtune\p00.cpp">
+      <Filter>src\SidTune</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidtune\prg.cpp">
+      <Filter>src\SidTune</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidtune\PSID.cpp">
+      <Filter>src\SidTune</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidtune\SidTuneBase.cpp">
+      <Filter>src\SidTune</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sidtune\SidTuneTools.cpp">
+      <Filter>src\SidTune</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\MD5\MD5.cpp">
+      <Filter>src\Utils\MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\md5Factory.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c64\CIA\interrupt.cpp">
+      <Filter>src\C64\CIA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c64\CIA\mos652x.cpp">
+      <Filter>src\C64\CIA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\resample\SincResampler.cpp">
+      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\Dac.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\EnvelopeGenerator.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\ExternalFilter.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\Filter.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\Filter6581.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\Filter8580.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\FilterModelConfig.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\FilterModelConfig6581.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\FilterModelConfig8580.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\Integrator6581.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\Integrator8580.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\OpAmp.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\SID.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\Spline.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\version.cc">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\WaveformCalculator.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\WaveformGenerator.cpp">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp-builder.cpp">
+      <Filter>src\Builders\residfp-builder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp-emu.cpp">
+      <Filter>src\Builders\residfp-builder</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\sidplayfp\sidbuilder.h">
+      <Filter>src\Sidplayfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidplayfp\SidConfig.h">
+      <Filter>src\Sidplayfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidplayfp\siddefs.h">
+      <Filter>src\Sidplayfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidplayfp\SidInfo.h">
+      <Filter>src\Sidplayfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidplayfp\sidplayfp.h">
+      <Filter>src\Sidplayfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidplayfp\SidTune.h">
+      <Filter>src\Sidplayfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidplayfp\SidTuneInfo.h">
+      <Filter>src\Sidplayfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventCallback.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventScheduler.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mixer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\player.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\psiddrv.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\reloc65.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\romCheck.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidcxx11.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidemu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidendian.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SidInfoImpl.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidmd5.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidmemory.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidrandom.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stringutils.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\Banks\Bank.h">
+      <Filter>src\C64\Banks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\Banks\ColorRAMBank.h">
+      <Filter>src\C64\Banks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\Banks\DisconnectedBusBank.h">
+      <Filter>src\C64\Banks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\Banks\ExtraSidBank.h">
+      <Filter>src\C64\Banks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\Banks\IOBank.h">
+      <Filter>src\C64\Banks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\Banks\NullSid.h">
+      <Filter>src\C64\Banks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\Banks\SidBank.h">
+      <Filter>src\C64\Banks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\Banks\SystemRAMBank.h">
+      <Filter>src\C64\Banks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\Banks\SystemROMBanks.h">
+      <Filter>src\C64\Banks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\Banks\ZeroRAMBank.h">
+      <Filter>src\C64\Banks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\CIA\interrupt.h">
+      <Filter>src\C64\CIA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\CIA\SerialPort.h">
+      <Filter>src\C64\CIA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\CIA\timer.h">
+      <Filter>src\C64\CIA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\CIA\tod.h">
+      <Filter>src\C64\CIA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\CPU\flags.h">
+      <Filter>src\C64\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\CPU\mos6510.h">
+      <Filter>src\C64\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\CPU\mos6510debug.h">
+      <Filter>src\C64\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\CPU\opcodes.h">
+      <Filter>src\C64\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\VIC_II\lightpen.h">
+      <Filter>src\C64\VIC_II</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\VIC_II\mos656x.h">
+      <Filter>src\C64\VIC_II</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\VIC_II\sprites.h">
+      <Filter>src\C64\VIC_II</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\c64.h">
+      <Filter>src\C64</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\c64cia.h">
+      <Filter>src\C64</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\c64cpu.h">
+      <Filter>src\C64</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\c64env.h">
+      <Filter>src\C64</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\c64sid.h">
+      <Filter>src\C64</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\c64vic.h">
+      <Filter>src\C64</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\mmu.h">
+      <Filter>src\C64</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidtune\MUS.h">
+      <Filter>src\SidTune</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidtune\p00.h">
+      <Filter>src\SidTune</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidtune\prg.h">
+      <Filter>src\SidTune</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidtune\PSID.h">
+      <Filter>src\SidTune</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidtune\SidTuneBase.h">
+      <Filter>src\SidTune</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidtune\SidTuneCfg.h">
+      <Filter>src\SidTune</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidtune\SidTuneInfoImpl.h">
+      <Filter>src\SidTune</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidtune\SidTuneTools.h">
+      <Filter>src\SidTune</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidtune\SmartPtr.h">
+      <Filter>src\SidTune</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\iMd5.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\md5Factory.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\md5Gcrypt.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\md5Internal.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sidcxx14.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c64\CIA\mos652x.h">
+      <Filter>src\C64\CIA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\resample\Resampler.h">
+      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\resample\SincResampler.h">
+      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\resample\TwoPassSincResampler.h">
+      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\resample\ZeroOrderResampler.h">
+      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\array.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\Dac.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\EnvelopeGenerator.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\ExternalFilter.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\Filter.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\Filter6581.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\Filter8580.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\FilterModelConfig.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\FilterModelConfig6581.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\FilterModelConfig8580.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\Integrator6581.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\Integrator8580.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\OpAmp.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\Potentiometer.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\SID.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\Spline.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\Voice.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\WaveformCalculator.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\WaveformGenerator.h">
+      <Filter>src\Builders\residfp-builder\residfp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp.h">
+      <Filter>src\Builders\residfp-builder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp-emu.h">
+      <Filter>src\Builders\residfp-builder</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\poweron.bin">
+      <Filter>src</Filter>
+    </None>
+    <None Include="src\psiddrv.a65">
+      <Filter>src</Filter>
+    </None>
+    <None Include="src\psiddrv.bin">
+      <Filter>src</Filter>
+    </None>
+    <None Include="src\sidtune\sidplayer1.a65">
+      <Filter>src\SidTune</Filter>
+    </None>
+    <None Include="src\sidtune\sidplayer1.bin">
+      <Filter>src\SidTune</Filter>
+    </None>
+    <None Include="src\sidtune\sidplayer2.a65">
+      <Filter>src\SidTune</Filter>
+    </None>
+    <None Include="src\sidtune\sidplayer2.bin">
+      <Filter>src\SidTune</Filter>
+    </None>
+  </ItemGroup>
+</Project>
