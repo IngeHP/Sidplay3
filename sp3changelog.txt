@@ -10,3 +10,50 @@ Sidplay3
 2022-04-01
 - Newest libsidplayfp added
 
+2022-05-01
+- Emulation Config Window added
+- Changed ini-file to Sidplay3.ini
+
+2022-07-19
+- About box finally working as planned.
+
+2022-07-20
+- Settings Window added. Removed precision settings as the player now uses 16-bit
+  precision only.
+
+2022-07-21
+- Fixed a few minor bugs:
+    - STILView deferred to system font when turning off and on again
+	- SLDB path to HVSC kept appending when changing/resetting path
+	- Playlist fadeout didn't work on tunes with milliseconds in song length
+
+2022-07-22
+- Fixed a few minor bugs:
+	- Playlist now correctly checks for the milliseconds part of the song length 
+	
+2022-07-24
+- Added a few keyboard shortcuts from Sidplay2.x
+	- Ctrl+C for copying the file path
+	- Alt+S for Stop/Start
+	- Alt+P for Play/Pause
+- Added a keyboard hook routine to be used for different scenarios
+	- Esc key will now close most windows.
+	
+22-07-31
+- Added settings window for Directory UI. Settings are saved
+- Added setting to turn on or off showing of milliseconds in the player window.
+
+22-08-01
+- CPU Debug now works.
+
+22-08-02
+- Fixed an issue with STIL in the 64-bit version. Due to an overlooked 32-bit pointer
+  the window would never open in 64-bit mode.
+- The FixedFont in STIL now shows correctly the first time STIL Window is shown.
+- As suggested by Magnate/HVSC I've set all the following settings as default settings:
+    - All three Show STIL settings to ON
+	- Sampling Method to Resample Interpolate
+
+22-08-20
+- Added missing credits for ReSIDFP
+- Fixed sid-change in playlist mode (didn't check for negative fade value which is default)
