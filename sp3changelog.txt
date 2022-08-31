@@ -57,3 +57,8 @@ Sidplay3
 22-08-20
 - Added missing credits for ReSIDFP
 - Fixed sid-change in playlist mode (didn't check for negative fade value which is default)
+
+22-08-31
+- Fixed problem where changing HVSC base dir caused the player to crash.
+- Fixed Save playlist; used absolute path for entries where it should have used relative paths.
+- Fixed Load playlist; now correctly loads relative path to entry.
