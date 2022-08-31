@@ -974,8 +974,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			if (myPlayList)
 			{
 				PlayListEntry* curEntry = myPlayList->Cur();
-
-				tuneLength = curEntry->PlayTime();
+				if (curEntry)
+				{
+					tuneLength = curEntry->PlayTime();
+				}
+				else
+				{
+					tuneLength = 0;
+				}
 			}
 			else
 			{
