@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2012-2015 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2012-2022 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2010 Antti Lankila
  *
  * This program is free software; you can redistribute it and/or modify
@@ -35,11 +35,12 @@ namespace libsidplayfp
 
 /**
  * ROM bank base class.
- * N must be a power of two.
  */
 template <int N>
 class romBank : public Bank
 {
+    static_assert((N != 0) && ((N & (N - 1)) == 0), "N must be a power of two");
+
 protected:
     /// The ROM array
     uint8_t rom[N];
@@ -64,7 +65,7 @@ public:
     /**
      * Copy content from source buffer.
      */
-    void set(const uint8_t* source) { if (source != nullptr) memcpy(rom, source, N); }
+    void set(const uint8_t* source) { if (source != nullptr) std::memcpy(rom, source, N); }
 
     /**
      * Writing to ROM is a no-op.
@@ -158,17 +159,17 @@ public:
         romBank<0x2000>::set(basic);
 
         // Backup BASIC Warm Start
-        memcpy(trap, getPtr(0xa7ae), sizeof(trap));
+        std::memcpy(trap, getPtr(0xa7ae), sizeof(trap));
 
-        memcpy(subTune, getPtr(0xbf53), sizeof(subTune));
+        std::memcpy(subTune, getPtr(0xbf53), sizeof(subTune));
     }
 
     void reset()
     {
         // Restore original BASIC Warm Start
-        memcpy(getPtr(0xa7ae), trap, sizeof(trap));
+        std::memcpy(getPtr(0xa7ae), trap, sizeof(trap));
 
-        memcpy(getPtr(0xbf53), subTune, sizeof(subTune));
+        std::memcpy(getPtr(0xbf53), subTune, sizeof(subTune));
     }
 
     /**

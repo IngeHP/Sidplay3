@@ -135,9 +135,6 @@
     <ClCompile Include="src\c64\CIA\mos652x.cpp">
       <Filter>src\C64\CIA</Filter>
     </ClCompile>
-    <ClCompile Include="src\builders\residfp-builder\residfp\resample\SincResampler.cpp">
-      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
-    </ClCompile>
     <ClCompile Include="src\builders\residfp-builder\residfp\Dac.cpp">
       <Filter>src\Builders\residfp-builder\residfp</Filter>
     </ClCompile>
@@ -194,6 +191,9 @@
     </ClCompile>
     <ClCompile Include="src\builders\residfp-builder\residfp-emu.cpp">
       <Filter>src\Builders\residfp-builder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\builders\residfp-builder\residfp\resample\SincResampler.cpp">
+      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,18 +395,6 @@
     <ClInclude Include="src\c64\CIA\mos652x.h">
       <Filter>src\C64\CIA</Filter>
     </ClInclude>
-    <ClInclude Include="src\builders\residfp-builder\residfp\resample\Resampler.h">
-      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
-    </ClInclude>
-    <ClInclude Include="src\builders\residfp-builder\residfp\resample\SincResampler.h">
-      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
-    </ClInclude>
-    <ClInclude Include="src\builders\residfp-builder\residfp\resample\TwoPassSincResampler.h">
-      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
-    </ClInclude>
-    <ClInclude Include="src\builders\residfp-builder\residfp\resample\ZeroOrderResampler.h">
-      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
-    </ClInclude>
     <ClInclude Include="src\builders\residfp-builder\residfp\array.h">
       <Filter>src\Builders\residfp-builder\residfp</Filter>
     </ClInclude>
@@ -469,6 +457,18 @@
     </ClInclude>
     <ClInclude Include="src\builders\residfp-builder\residfp-emu.h">
       <Filter>src\Builders\residfp-builder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\resample\Resampler.h">
+      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\resample\SincResampler.h">
+      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\resample\TwoPassSincResampler.h">
+      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\builders\residfp-builder\residfp\resample\ZeroOrderResampler.h">
+      <Filter>src\Builders\residfp-builder\residfp\resample</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

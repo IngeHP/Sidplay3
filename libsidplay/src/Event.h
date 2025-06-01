@@ -29,7 +29,7 @@
 namespace libsidplayfp
 {
 
-typedef int_fast64_t event_clock_t;
+using event_clock_t = int_fast64_t;
 
 
 /**
@@ -51,8 +51,7 @@ private:
 
 public:
     /**
-     * Events are used for delayed execution. Name is
-     * not used by code, but is useful for debugging.
+     * Events are used for delayed execution.
      *
      * @param name Descriptive string of the event.
      */
@@ -66,8 +65,14 @@ public:
      */
     virtual void event() = 0;
 
+    /**
+     * Get the event name.
+     * Only for debugging purposes.
+     */
+    const char* name() const { return m_name; }
+
 protected:
-    ~Event() {}
+    ~Event() = default;
 };
 
 }

@@ -27,7 +27,7 @@
 #  include "config.h"
 #endif
 
-//#ifdef DEBUG
+#ifdef DEBUG
 
 #include "Event.h"
 
@@ -43,6 +43,6 @@ namespace MOS6510Debug
 
 }
 
-//#endif // DEBUG
+#endif // DEBUG
 
 #endif // MOS6510DEBUG_H

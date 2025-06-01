@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2011-2021 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2011-2022 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
  * Copyright 2000-2001 Simon White
  *
@@ -26,7 +26,7 @@
 
 #include <stdint.h>
 #include <cstdio>
-
+//#include <Windows.h> // for debugging
 #include "sidplayfp/siddefs.h"
 #include "sidplayfp/SidConfig.h"
 #include "sidplayfp/SidTuneInfo.h"
@@ -40,6 +40,7 @@
 #  include "config.h"
 #endif
 
+#include <atomic>
 #include <vector>
 
 class SidTune;
@@ -53,12 +54,12 @@ namespace libsidplayfp
 class Player
 {
 private:
-    typedef enum
+    enum class state_t
     {
         STOPPED,
         PLAYING,
         STOPPING
-    } state_t;
+    };
 
 private:
     /// Commodore 64 emulator
@@ -79,7 +80,7 @@ private:
     /// Error message
     const char *m_errorString;
 
-    volatile state_t m_isPlaying;
+    std::atomic<state_t> m_isPlaying;
 
     sidrandom m_rand;
 
@@ -130,7 +131,7 @@ private:
 
 public:
     Player();
-    ~Player() {}
+    ~Player() = default;
 
     const SidConfig &config() const { return m_cfg; }
 
@@ -144,17 +145,19 @@ public:
 
     uint_least32_t play(short *buffer, uint_least32_t samples);
 
-    bool isPlaying() const { return m_isPlaying != STOPPED; }
+    bool isPlaying() const { return m_isPlaying != state_t::STOPPED; }
 
     void stop();
-
-    uint_least32_t time() const { return m_c64.getTime(); }
 
     uint_least32_t timeMs() const { return m_c64.getTimeMs(); }
 
     void debug(const bool enable, FILE *out) { m_c64.debug(enable, out); }
 
     void mute(unsigned int sidNum, unsigned int voice, bool enable);
+    
+    void setVolume(int_least32_t left, int_least32_t right);
+
+    void filter(unsigned int sidNum, bool enable);
 
     const char *error() const { return m_errorString; }
 

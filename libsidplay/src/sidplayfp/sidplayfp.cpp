@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2011-2021 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2011-2022 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
  * Copyright 2000-2001 Simon White
  *
@@ -73,7 +73,7 @@ const SidInfo &sidplayfp::info() const
 
 uint_least32_t sidplayfp::time() const
 {
-    return sidplayer.time();
+    return sidplayer.timeMs() / 1000;
 }
 
 uint_least32_t sidplayfp::timeMs() const
@@ -94,6 +94,16 @@ bool  sidplayfp::fastForward(unsigned int percent)
 void sidplayfp::mute(unsigned int sidNum, unsigned int voice, bool enable)
 {
     sidplayer.mute(sidNum, voice, enable);
+}
+
+void sidplayfp::setVolume(int_least32_t left, int_least32_t right)
+{
+    sidplayer.setVolume(left, right);
+}
+
+void sidplayfp::filter(unsigned int sidNum, bool enable)
+{
+    sidplayer.filter(sidNum, enable);
 }
 
 void sidplayfp::debug(bool enable, FILE *out)

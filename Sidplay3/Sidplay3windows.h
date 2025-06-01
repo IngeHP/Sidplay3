@@ -17,8 +17,13 @@
 
 enum player_state_t : int
 {
-	playerError = 0, playerRunning, playerPaused, playerStopped,
-	playerRestart, playerExit, playerFast = 128,
+	playerError = 0,
+	playerRunning,
+	playerPaused,
+	playerStopped,
+	playerRestart,
+	playerExit,
+	playerFast = 128,
 	playerFastRestart = playerRestart | playerFast,
 	playerFastExit = playerExit | playerFast
 } ;
@@ -37,21 +42,29 @@ typedef enum
 	Still allows wav generation */
 	EMU_NONE = 0,
 	/* The following require a soundcard */
-	EMU_DEFAULT, EMU_RESIDFP, EMU_RESID,
+	EMU_DEFAULT,
+	EMU_RESIDFP,
+	EMU_RESID,
 	/* The following should disable the soundcard */
-	EMU_HARDSID, EMU_SIDSTATION, EMU_COMMODORE,
-	EMU_SIDSYN, EMU_END
+	EMU_HARDSID,
+	EMU_EXSID,
+	EMU_SIDSTATION,
+	EMU_COMMODORE,
+	EMU_SIDSYN,
+	EMU_END
 } SIDEMUS;
 
-typedef enum
+enum class output_t
 {
 	/* Define possible output sources */
-	OUT_NULL = 0,
+	NONE,
 	/* Hardware */
-	OUT_SOUNDCARD,
+	SOUNDCARD,
 	/* File creation support */
-	OUT_WAV, OUT_AU, OUT_END
-} OUTPUTS;
+	WAV,
+	AU,
+	END
+};
 
 int     m_precision;
 
@@ -61,6 +74,9 @@ struct m_filter_t
 	double         bias;
 	// Filter parameters for reSIDfp
 	double         filterCurve6581;
+#ifdef FEAT_FILTER_RANGE
+	double         filterRange6581;
+#endif
 	double         filterCurve8580;
 
 	bool           enabled;
@@ -68,9 +84,10 @@ struct m_filter_t
 
 struct m_driver_t
 {
-	OUTPUTS        output;   // Selected output type
+	output_t       output;   // Selected output type
 	SIDEMUS        sid;      // Sid emulation
 	bool           file;     // File based driver
+	bool			info;	 // File metadata
 	AudioConfig    cfg;
 	IAudio*        selected; // Selected Output Driver
 	IAudio*        device;   // HW/File Driver

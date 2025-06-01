@@ -21,13 +21,20 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
+
+#ifdef HAVE_CONFIG_H
+#  include "config.h"
+#endif
+
+#include <atomic>
+
 /**
  * Counter.
  */
 class counter
 {
 private:
-    unsigned int c;
+    std::atomic<unsigned int> c;
 
 public:
     counter() : c(1) {}
@@ -68,6 +75,6 @@ public:
     T const* operator[](unsigned int a) const { return &data[a * y]; }
 };
 
-typedef matrix<short> matrix_t;
+using matrix_t = matrix<short>;
 
 #endif

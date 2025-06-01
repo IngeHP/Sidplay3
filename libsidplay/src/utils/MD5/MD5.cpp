@@ -34,7 +34,7 @@
 
 #include "MD5.h"
 
-#include <string.h>
+#include <cstring>
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
@@ -55,6 +55,7 @@
 
 #include <iostream.h>
 #include <iomanip.h>
+#include <cstdint>
 
 main()
 {
@@ -161,8 +162,8 @@ MD5::reset()
     abcd[1] = 0xefcdab89;
     abcd[2] = 0x98badcfe;
     abcd[3] = 0x10325476;
-    memset(digest,0,16);
-    memset(buf,0,64);
+    std::memset(digest,0,16);
+    std::memset(buf,0,64);
 }
 
 void
@@ -190,7 +191,7 @@ MD5::process(const md5_byte_t data[64])
      * On little-endian machines, we can process properly aligned data
      * without copying it.
      */
-    if (!((data - (const md5_byte_t *)0) & 3))
+    if (!((uintptr_t)data & 3))
     {
         /* data are properly aligned */
         X = (const md5_word_t *)data;
@@ -198,7 +199,7 @@ MD5::process(const md5_byte_t data[64])
     else
     {
         /* not aligned */
-        memcpy(tmpBuf, data, 64);
+        std::memcpy(tmpBuf, data, 64);
         X = tmpBuf;
     }
 #endif  /* MD5_IS_BIG_ENDIAN */
@@ -317,7 +318,7 @@ MD5::append(const void* data, int nbytes)
     if (offset)
     {
         int copy = (offset + nbytes > 64) ? (64 - offset) : nbytes;
-        memcpy(buf + offset, p, copy);
+        std::memcpy(buf + offset, p, copy);
         if (offset + copy < 64)
             return;
         p += copy;
@@ -331,7 +332,7 @@ MD5::append(const void* data, int nbytes)
 
     /* Process a final partial block. */
     if (left)
-        memcpy(buf, p, left);
+        std::memcpy(buf, p, left);
 }
 
 void

@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2011-2019 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2011-2022 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
  * Copyright 2000-2001 Simon White
  *
@@ -51,12 +51,13 @@ const char TXT_FORMAT_STR[]        = "C64 Stereo Sidplayer format (MUS+STR)";
 const char ERR_2ND_INVALID[]       = "SIDTUNE ERROR: 2nd file contains invalid data";
 const char ERR_SIZE_EXCEEDED[]     = "SIDTUNE ERROR: Total file size too large";
 
-static const uint_least16_t SIDTUNE_MUS_HLT_CMD = 0x14F;
+constexpr uint_least16_t SIDTUNE_MUS_HLT_CMD = 0x14F;
 
-static const uint_least16_t SIDTUNE_MUS_DATA_ADDR  = 0x0900;
-static const uint_least16_t SIDTUNE_SID2_BASE_ADDR = 0xd500;
+constexpr uint_least16_t SIDTUNE_MUS_DATA_ADDR  = 0x0900;
+constexpr uint_least16_t SIDTUNE_SID2_BASE_ADDR = 0xd500;
 
-const int o65headersize = 27;
+constexpr int o65headersize = 27;
+
 const uint8_t* player1 = sidplayer1 + o65headersize;
 const uint8_t* player2 = sidplayer2 + o65headersize;
 const size_t player1size = sizeof(sidplayer1) - o65headersize;
@@ -215,7 +216,7 @@ void MUS::tryLoad(buffer_t& musBuf,
 
     {
         // All subtunes should be CIA
-        for (uint_least16_t i = 0; i < info->m_songs; i++)
+        for (unsigned int i = 0; i < info->m_songs; i++)
         {
             if (songSpeed[i] != SidTuneInfo::SPEED_CIA_1A)
             {
@@ -231,14 +232,14 @@ void MUS::tryLoad(buffer_t& musBuf,
 
     // Voice3Index now is offset to text lines (uppercase Pet-strings).
     spPet += voice3Index;
-
-    // Copy original PETSCII string from file
-    int i = 0;
-    while (spPet[i])
-    {
-        info->m_musString.push_back(spPet[i++]);
-    }
-    info->m_musString.push_back(0);
+	
+	// Copy original PETSCII string from file
+	int i = 0;
+	while (spPet[i])
+	{
+		info->m_musString.push_back(spPet[i++]);
+	}
+	info->m_musString.push_back(0);
 
     // Extract credits
     while (*spPet)
@@ -277,13 +278,13 @@ void MUS::tryLoad(buffer_t& musBuf,
         // Voice3Index now is offset to text lines (uppercase Pet-strings).
         spPet += voice3Index;
 
-        // Copy original PETSCII string from file
-        int i = 0;
-        while (spPet[i])
-        {
-            info->m_musString.push_back(spPet[i++]);
-        }
-        info->m_musString.push_back(0);
+		// Copy original PETSCII string from file
+		int i = 0;
+		while (spPet[i])
+		{
+			info->m_musString.push_back(spPet[i++]);
+		}
+		info->m_musString.push_back(0);
 
         // Extract credits
         while (*spPet)

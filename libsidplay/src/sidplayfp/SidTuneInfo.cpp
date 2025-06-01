@@ -54,7 +54,6 @@ const char* SidTuneInfo::infoString(unsigned int i) const { return getInfoString
 
 unsigned int SidTuneInfo::numberOfCommentStrings() const{ return getNumberOfCommentStrings(); }
 const char* SidTuneInfo::commentString(unsigned int i) const{ return getCommentString(i); }
-
 const char* SidTuneInfo::musString() const { return getMusString(); }
 
 uint_least32_t SidTuneInfo::dataFileLen() const { return getDataFileLen(); }

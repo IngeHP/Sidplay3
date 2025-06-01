@@ -10,6 +10,7 @@
 #include <direct.h>
 #include <math.h>
 #include <Commctrl.h>
+#include <time.h>
 
 // Other includes
 #include "ofile.h"
@@ -50,7 +51,8 @@ TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
 TCHAR szAppPath[MAX_PATH];
 TCHAR inFile[MAX_PATH + 1];
-const DWORD dwMaxWavVol = 0xffff;
+const int_least32_t mixerMaxVol = 1024;
+int_least32_t currentVol = mixerMaxVol;
 
 char				infilename[MAX_PATH+ 1] = "";
 char				szIni[MAX_PATH];
@@ -88,6 +90,7 @@ AudioSettings		audiosettings;
 PlayList*			myPlayList;
 HHOOK				keyboardHook;
 CpuDebug			cpuDebug;
+double				m_fcurve;
 
 // ROM resourcers
 const uint8_t KERNAL[8192] = {
@@ -124,8 +127,8 @@ bool				InitTune(unsigned int song);
 
 void				InfoBox(HWND hwnd, const char *title, const char* szFormat...);
 void				RefreshProperties();
-bool				CreateSidEmu(SIDEMUS emu);
-bool				CreateOutput(OUTPUTS driver);
+bool				CreateSidEmu(SIDEMUS emu, const SidTuneInfo *tuneInfo);
+bool				CreateOutput(output_t driver, const SidTuneInfo *tuneInfo);
 void				Start();
 void				Stop();
 bool				Play();
@@ -454,6 +457,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		// Init our random number generator
 		srand(time(NULL));
 
+		// Initiate the config structure
+		m_engCfg = m_engine.config();
+
 		// Read settings from ini-file
 		ReadAudioSettings(&as, szIni);
 		m_engCfg.frequency = as.frequency;
@@ -480,9 +486,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		// Setup audio device
 		m_driver.device = NULL;
-		CreateOutput(OUT_NULL);
-		CreateSidEmu(EMU_NONE);
-		m_driver.output = OUT_SOUNDCARD;
+		CreateOutput(output_t::NONE, nullptr);
+		CreateSidEmu(EMU_NONE, nullptr);
+		m_driver.output = output_t::SOUNDCARD;
 
 		m_engine.setRoms(KERNAL, BASIC, CHARACTERS);
 
@@ -1082,9 +1088,9 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			mileageEver = string(tmptext);
 		}
 
-		infoText = "Sidplay Windows, version 3.0\n\n";
+		infoText = "Sidplay Windows, version 3.01a\n\n";
 		infoText += "GUI code by Adam Lorenzon -2006\n";
-		infoText += "Updated and rewritten by Inge H. Pedersen 2007-2022\n\n";
+		infoText += "Updated and rewritten by Inge H. Pedersen 2007-2024\n\n";
 		
 		// Get info from LibSidPlayFP
 		const SidInfo& info = m_engine.info();
@@ -1430,7 +1436,7 @@ bool LoadSid(FileExtensions &extension)
 		if (selectedSong > tuneInfo->songs())
 			selectedSong = tuneInfo->startSong();
 	}
-
+	// MessageBox(hPlayer, L"Before InitTune", L"DEBUG", 0);
 	bInitSuccess = InitTune(selectedSong);
 
 	const SidInfo &info = m_engine.info();
@@ -1469,6 +1475,8 @@ bool LoadSid(FileExtensions &extension)
 	if (!bInitSuccess)
 		return false;
 
+	//MessageBox(hPlayer, L"After InitTune", L"DEBUG", 0);
+
 	RefreshProperties();
 
 	SetDlgItemText(hPlayer, IDB_PLAYPAUSE, L"Pause");
@@ -1489,20 +1497,24 @@ bool InitTune(unsigned int song)
 		return false;
 	}
 
+	//MessageBox(hPlayer, L"Engine.Load", L"DEBUG", 0);
 	if (!m_engine.load(m_tune))
 	{
 		InfoBox(NULL, "Error", m_engine.error());
 		return false;
 	}
 
+	//MessageBox(hPlayer, L"Tune -> GetInfo", L"DEBUG", 0);
 	const SidTuneInfo *ti = m_tune->getInfo();
 	const SidInfo &info = m_engine.info();
 
-	if (!CreateOutput(m_driver.output))
+	//MessageBox(hPlayer, L"Create Output", L"DEBUG", 0);
+	if (!CreateOutput(m_driver.output, ti))
 		return false;
-	if (!CreateSidEmu(m_driver.sid))
+	if (!CreateSidEmu(m_driver.sid, ti))
 		return false;
 
+	//MessageBox(hPlayer, L"Configure engine", L"DEBUG", 0);
 	// Configure engine with settings
 	if (!m_engine.config(m_engCfg))
 	{
@@ -1511,10 +1523,12 @@ bool InitTune(unsigned int song)
 		return false;
 	}
 
+	//MessageBox(hPlayer, L"Setting speed...", L"DEBUG", 0);
 	m_driver.selected = &m_driver.null;
-	m_speed.current = m_speed.max;
+	m_speed.current = 1;
 	m_engine.fastForward(100 * m_speed.current);
 
+	//MessageBox(hPlayer, L"Some muting...", L"DEBUG", 0);
 	m_engine.mute(0, 0, v1mute);
 	m_engine.mute(0, 1, v2mute);
 	m_engine.mute(0, 2, v3mute);
@@ -1526,8 +1540,10 @@ bool InitTune(unsigned int song)
 	m_engine.mute(2, 2, v9mute);
 
 	// Implement a Master Volume ?
-	DWORD vol = dwMaxWavVol + (dwMaxWavVol << 16);
-	m_driver.device->setVolume(vol);
+	//MessageBox(hPlayer, L"SetVolume...", L"DEBUG", 0);
+	m_engine.setVolume(currentVol, currentVol);
+
+	//MessageBox(hPlayer, L"SetVolume ok", L"DEBUG", 0);
 
 	EnableDlgItem(hPlayer, IDC_SCRSUBSONG, ti->songs() > 1);
 	if (ti->songs() > 1)
@@ -1712,13 +1728,14 @@ void RefreshProperties()
 }
 
 // Setup SID Emulation
-bool CreateSidEmu(SIDEMUS emu)
+bool CreateSidEmu(SIDEMUS emu, const SidTuneInfo *tuneInfo)
 {
+	m_fcurve = -1.0;
 	// Remove old driver and emulation
 	if (m_engCfg.sidEmulation)
 	{
 		sidbuilder *builder = m_engCfg.sidEmulation;
-		m_engCfg.sidEmulation = NULL;
+		m_engCfg.sidEmulation = nullptr;
 		m_engine.config(m_engCfg);
 		delete builder;
 	}
@@ -1736,10 +1753,24 @@ bool CreateSidEmu(SIDEMUS emu)
 			rs->create((m_engine.info()).maxsids());
 			if (!rs->getStatus()) goto createSidEmu_error;
 
-			if (m_filter.filterCurve6581)
-				rs->filter6581Curve(m_filter.filterCurve6581);
-			if (m_filter.filterCurve8580)
-				rs->filter8580Curve((double)m_filter.filterCurve8580);
+			// 6581
+			double fcurve = m_filter.filterCurve6581;
+			if (fcurve < 0.0 || fcurve > 1.0)
+			{
+				fcurve = 0.50;
+				m_filter.filterCurve6581 = fcurve;
+			}
+			rs->filter6581Curve(fcurve);
+			
+			// 8580
+
+			fcurve = m_filter.filterCurve8580;
+			if (fcurve < 0.0 || fcurve > 1.0)
+			{
+				fcurve = 0.50;
+				m_filter.filterCurve8580 = fcurve;
+			}
+			rs->filter8580Curve(fcurve);
 		}
 		catch (std::bad_alloc const &ba) {}
 		break;
@@ -1790,37 +1821,37 @@ createSidEmu_error:
 	return false;
 }
 
-bool CreateOutput(OUTPUTS driver)
+bool CreateOutput(output_t driver, const SidTuneInfo *tuneInfo)
 {
 	// Remove old audio driver
 	m_driver.null.close();
 	m_driver.selected = &m_driver.null;
-	if (m_driver.device != NULL)
+	if (m_driver.device != nullptr)
 	{
 		if (m_driver.device != &m_driver.null)
 			delete m_driver.device;
-		m_driver.device = NULL;
+		m_driver.device = nullptr;
 	}
 
 	// Create Audio driver
 	switch (driver)
 	{
-	case OUT_NULL:
+	case output_t::NONE:
 		m_driver.device = &m_driver.null;
 		break;
 
-	case OUT_SOUNDCARD:
+	case output_t::SOUNDCARD:
 		try
 		{
 			m_driver.device = new audioDrv();
 		}
 		catch (std::bad_alloc const &ba)
 		{
-			m_driver.device = 0;
+			m_driver.device = nullptr;
 		}
 		break;
 
-	case OUT_WAV:
+	case output_t::WAV:
 	default:
 		break;
 	}
@@ -1832,6 +1863,8 @@ bool CreateOutput(OUTPUTS driver)
 		InfoBox(NULL, "Error", "Couldn't create output");
 		return false;
 	}
+
+	int tuneChannels = (tuneInfo && (tuneInfo->sidChips() > 1)) ? 2 : 1;
 
 	// Configure user settings
 	m_driver.cfg.frequency = m_engCfg.frequency;
@@ -1849,7 +1882,7 @@ bool CreateOutput(OUTPUTS driver)
 			err = true;
 
 		// Can't open the same driver twice
-		if (driver != OUT_NULL)
+		if (driver != output_t::NONE)
 		{
 			if (!m_driver.null.open(m_driver.cfg))
 				err = true;
@@ -1869,12 +1902,10 @@ bool CreateOutput(OUTPUTS driver)
 	switch (m_driver.cfg.channels)
 	{
 	case 1:
-		if (m_engCfg.playback == SidConfig::STEREO)
-			m_engCfg.playback = SidConfig::MONO;
+		m_engCfg.playback = SidConfig::MONO;
 		break;
 	case 2:
-		if (m_engCfg.playback == SidConfig::MONO)
-			m_engCfg.playback = SidConfig::STEREO;
+		m_engCfg.playback = SidConfig::STEREO;
 		break;
 	default:
 		InfoBox(NULL, "Error", "%d audio channels not supported.", m_driver.cfg.channels);
@@ -2027,8 +2058,8 @@ unsigned int __stdcall PlayThread(LPVOID data)
 
 						if (fadeCountDown > 0)
 						{
-							fadeSub = (int)(dwMaxWavVol / fadeCountDown / (1000 / 187));
-							fadeVol = dwMaxWavVol;
+							fadeSub = (int)(currentVol / fadeCountDown / (1000 / 187));
+							fadeVol = currentVol;
 							fadeTime = (int)iTimer;
 						}
 					}
@@ -2037,8 +2068,7 @@ unsigned int __stdcall PlayThread(LPVOID data)
 			}
 			else if (myPlayList->NumEntries() > 0 && fadeCountDown > 0)
 			{
-				unsigned long tmpVol = fadeVol + (fadeVol << 16);
-				m_driver.device->setVolume(tmpVol);
+				m_engine.setVolume(fadeVol, fadeVol);
 				fadeVol -= fadeSub;
 				if (fadeVol <= 187 || fadeCountDown == 0)
 				{
@@ -2056,7 +2086,7 @@ unsigned int __stdcall PlayThread(LPVOID data)
 						fadeTime = (int)iTimer;
 						fadeCountDown--;
 					}
-				}
+				} 
 			}
 		}
 		if (!ret)
@@ -2083,8 +2113,8 @@ void CleanUp()
 	// Emulation-related
 	Stop();
 	m_driver.selected->close();
-	CreateOutput(OUT_NULL);
-	CreateSidEmu(EMU_NONE);
+	CreateOutput(output_t::NONE, nullptr);
+	CreateSidEmu(EMU_NONE,nullptr);
 	m_engine.load(NULL);
 	m_engine.config(m_engCfg);
 

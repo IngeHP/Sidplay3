@@ -51,7 +51,7 @@ public:
 
 public:
     ReSID(sidbuilder *builder);
-    ~ReSID();
+    ~ReSID() override;
 
     bool getStatus() const { return m_status; }
 
@@ -66,8 +66,6 @@ public:
 
     void sampling(float systemclock, float freq,
         SidConfig::sampling_method_t method, bool fast) override;
-
-    void voice(unsigned int num, bool mute) override;
 
     void model(SidConfig::sid_model_t model, bool digiboost) override;
 

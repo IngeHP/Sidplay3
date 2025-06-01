@@ -155,7 +155,7 @@ public:
     //@{
     unsigned int numberOfCommentStrings() const;     ///< Number of comments
     const char* commentString(unsigned int i) const; ///< Used to stash the MUS comment somewhere
-    const char* musString() const;
+	const char* musString() const;					 ///< The original MUS comment from the file
     //@}
 
     /**
@@ -231,8 +231,7 @@ private:
 
     virtual unsigned int getNumberOfCommentStrings() const =0;
     virtual const char* getCommentString(unsigned int i) const =0;
-
-    virtual const char* getMusString() const = 0;
+	virtual const char* getMusString() const =0;
 
     virtual uint_least32_t getDataFileLen() const =0;
 

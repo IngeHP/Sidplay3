@@ -175,7 +175,7 @@
 #define PACKAGE_NAME "libsidplayfp"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "libsidplayfp 2.4.0a"
+#define PACKAGE_STRING "libsidplayfp 2.12.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "libsidplayfp"
@@ -184,7 +184,7 @@
 #define PACKAGE_URL "https://github.com/libsidplayfp/libsidplayfp/"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "2.4.0a"
+#define PACKAGE_VERSION "2.12.0"
 
 /* Path to Lorenz' testsuite. */
 #undef PC64_TESTSUITE
@@ -206,7 +206,10 @@
 #undef STDC_HEADERS
 
 /* Version number of package */
-#define VERSION "2.4.0a"
+#define VERSION "2.12.0"
+
+// DEBUG Always On for CPU DUMP
+#define DEBUG 1
 
 /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
    significant byte first (like Motorola and SPARC, unlike Intel). */

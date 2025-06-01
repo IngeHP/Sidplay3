@@ -60,20 +60,20 @@ public:
 class SidTuneBase
 {
 protected:
-    typedef std::vector<uint8_t> buffer_t;
+    using buffer_t = std::vector<uint8_t>;
 
 protected:
     /// Also PSID file format limit.
-    static const unsigned int MAX_SONGS = 256;
+    static constexpr unsigned int MAX_SONGS = 256;
 
     // Generic error messages
     static const char ERR_TRUNCATED[];
     static const char ERR_INVALID[];
 
 public:  // ----------------------------------------------------------------
-    virtual ~SidTuneBase() {}
+    virtual ~SidTuneBase() = default;
 
-    typedef void (*LoaderFunc)(const char* fileName, buffer_t& bufferRef);
+    using LoaderFunc = void (*)(const char* fileName, buffer_t& bufferRef);
 
     /**
      * Load a sidtune from a file.
@@ -273,8 +273,8 @@ private:  // ---------------------------------------------------------------
 
 private:
     // prevent copying
-    SidTuneBase(const SidTuneBase&);
-    SidTuneBase& operator=(SidTuneBase&);
+    SidTuneBase(const SidTuneBase&) = delete;
+    SidTuneBase& operator=(SidTuneBase&) = delete;
 };
 
 }

@@ -39,15 +39,24 @@ class EventContext;
 namespace libsidplayfp
 {
 
-//#ifdef DEBUG
+#ifdef DEBUG
 class MOS6510;
 
 namespace MOS6510Debug
 {
     void DumpState(event_clock_t time, MOS6510 &cpu);
 }
-//#endif
+#endif
 
+class CPUDataBus
+{
+public:
+  virtual ~CPUDataBus() = default;
+
+  virtual uint8_t cpuRead(uint_least16_t addr) =0;
+
+  virtual void cpuWrite(uint_least16_t addr, uint8_t data) =0;
+};
 
 /**
  * Cycle-exact 6502/6510 emulation core.
@@ -60,9 +69,9 @@ namespace MOS6510Debug
  */
 class MOS6510
 {
-//#ifdef DEBUG
+#ifdef DEBUG
     friend void MOS6510Debug::DumpState(event_clock_t time, MOS6510 &cpu);
-//#endif
+#endif
 
 public:
     class haltInstruction {};
@@ -85,16 +94,19 @@ public:
 private:
     struct ProcessorCycle
     {
-        void (MOS6510::*func)();
+        void (*func)(MOS6510&);
         bool nosteal;
         ProcessorCycle() :
-            func(0),
+            func(nullptr),
             nosteal(false) {}
     };
 
 private:
     /// Event scheduler
     EventScheduler &eventScheduler;
+
+    /// Data bus
+    CPUDataBus &dataBus;
 
     /// Current instruction and subcycle within instruction
     int cycleCount;
@@ -136,7 +148,7 @@ private:
     uint8_t Register_X;
     uint8_t Register_Y;
 
-//#ifdef DEBUG
+#ifdef DEBUG
     // Debug info
     int_least32_t instrStartPC;
     uint_least16_t instrOperand;
@@ -144,23 +156,23 @@ private:
     FILE *m_fdbg;
 
     bool dodump;
-//#endif
+#endif
 
     /// Table of CPU opcode implementations
     struct ProcessorCycle instrTable[0x101 << 3];
 
 private:
-    /// Represents an instruction subcycle that writes
-    EventCallback<MOS6510> m_nosteal;
-
-    /// Represents an instruction subcycle that reads
-    EventCallback<MOS6510> m_steal;
-
-    EventCallback<MOS6510> clearInt;
-
     void eventWithoutSteals();
     void eventWithSteals();
     void removeIRQ();
+
+    /// Represents an instruction subcycle that writes
+    FastEventCallback<MOS6510, &MOS6510::eventWithoutSteals> m_nosteal;
+
+    /// Represents an instruction subcycle that reads
+    FastEventCallback<MOS6510, &MOS6510::eventWithSteals> m_steal;
+
+    FastEventCallback<MOS6510, &MOS6510::removeIRQ> clearInt;
 
     inline void Initialise();
 
@@ -297,27 +309,13 @@ private:
 
     inline void buildInstructionTable();
 
-protected:
-    MOS6510(EventScheduler &scheduler);
-    ~MOS6510() {}
-
-    /**
-     * Get data from system environment.
-     *
-     * @param address
-     * @return data byte CPU requested
-     */
-    virtual uint8_t cpuRead(uint_least16_t addr) =0;
-
-    /**
-     * Write data to system environment.
-     *
-     * @param address
-     * @param data
-     */
-    virtual void cpuWrite(uint_least16_t addr, uint8_t data) =0;
-
 public:
+    MOS6510(EventScheduler &scheduler, CPUDataBus& bus);
+
+    inline uint8_t cpuRead(uint_least16_t addr) { return dataBus.cpuRead(addr); }
+
+    inline void cpuWrite(uint_least16_t addr, uint8_t data) { dataBus.cpuWrite(addr, data); }
+
     void reset();
 
     static const char *credits();

@@ -77,14 +77,14 @@ public:
     std::vector<std::string> m_infoString;
 
     std::vector<std::string> m_commentString;
-
-    std::string m_musString;
+	
+	std::string m_musString;
 
     bool m_fixLoad;
 
 private:    // prevent copying
-    SidTuneInfoImpl(const SidTuneInfoImpl&);
-    SidTuneInfoImpl& operator=(SidTuneInfoImpl&);
+    SidTuneInfoImpl(const SidTuneInfoImpl&) = delete;
+    SidTuneInfoImpl& operator=(SidTuneInfoImpl&) = delete;
 
 public:
     SidTuneInfoImpl() :
@@ -145,7 +145,7 @@ public:
 
     unsigned int getNumberOfCommentStrings() const override { return m_commentString.size(); }
     const char* getCommentString(unsigned int i) const override { return i<getNumberOfCommentStrings() ? m_commentString[i].c_str() : ""; }
-    const char* getMusString() const override { return m_musString.c_str(); }
+	const char* getMusString() const override { return m_musString.c_str(); }
 
     uint_least32_t getDataFileLen() const override { return m_dataFileLen; }
 

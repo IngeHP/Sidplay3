@@ -43,7 +43,7 @@ void CpuDebug::Set(string sidFile, string outFile, int sub, long startMillis, lo
 
 void CpuDebug::Run()
 {
-	short buf[40];
+	short buf[220];
 
 	Progress* progress = new Progress();
 	int percentdone = 0;
